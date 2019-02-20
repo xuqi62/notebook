@@ -1,47 +1,47 @@
 
-adb ÈçºÎ²é¿´½ø³ÌcpuºÍÄÚ´æÕ¼ÓÃÂÊ
+adb å¦‚ä½•æŸ¥çœ‹è¿›ç¨‹cpuå’Œå†…å­˜å ç”¨ç‡
 1. adb shell
 2. top | grep PID
-top -m 20 -t ²é¿´Ä³¸öÏß³ÌÕ¼ÓÃcpu×ÊÔ´
+top -m 20 -t æŸ¥çœ‹æŸä¸ªçº¿ç¨‹å ç”¨cpuèµ„æº
 
 toolbox top -t -s cpu -m 20
 
 ###############################################################################
-A50¿ªËÄºË
+A50å¼€å››æ ¸
 echo 1800000 4 0 0 1800000 4 0 0 > /sys/devices/platform/soc/cpu_budget_cooling/roomage
 chmod 440 /sys/devices/platform/soc/cpu_budget_cooling/roomage
 
-¼ì²éÒ»ÏÂ roomage½ÚµãÊÇ²»ÊÇ 1800000 4 0 0 1800000 4 0 0£¬ ÕâÑù¾ÍÊÇ ¶¨ÔÚ×î¸ßÆµ ËÄºËÈ«¿ª
+æ£€æŸ¥ä¸€ä¸‹ roomageèŠ‚ç‚¹æ˜¯ä¸æ˜¯ 1800000 4 0 0 1800000 4 0 0ï¼Œ è¿™æ ·å°±æ˜¯ å®šåœ¨æœ€é«˜é¢‘ å››æ ¸å…¨å¼€
 ####################################################################################
 
- ²é¿´½ø³ÌÅÜÔÚÄÄ¸öcpuÉÏ
+ æŸ¥çœ‹è¿›ç¨‹è·‘åœ¨å“ªä¸ªcpuä¸Š
  ps -A -o NAME -o CPU | grep media
 #######################################################################
 
-²é¿´ÖĞ¶ÏºÅ
+æŸ¥çœ‹ä¸­æ–­å·
 cat  /proc/inter*
 
-°ÑÖĞ¶Ï°ó¶¨µ½ÆäËûºËÉÏ
-¼ÙÉèÖĞ¶ÏºÅÎª197 
+æŠŠä¸­æ–­ç»‘å®šåˆ°å…¶ä»–æ ¸ä¸Š
+å‡è®¾ä¸­æ–­å·ä¸º197 
 /proc/irq/197 # cat smp_affinity_list
 
 echo 2 > smp_affinity_list
 ########################################################################
 
-×¥°ü£ºtcpdump -i wlan0 -s 0 -w /sdcard/rtmp.pcap -v
+æŠ“åŒ…ï¼štcpdump -i wlan0 -s 0 -w /sdcard/rtmp.pcap -v
 
-¿´Íø¿¨£ºbusybox ifconfig
+çœ‹ç½‘å¡ï¼šbusybox ifconfig
 
-²é¿´ÏµÍ³Ê±ÖÓ×ÊÔ´£º
+æŸ¥çœ‹ç³»ç»Ÿæ—¶é’Ÿèµ„æºï¼š
   /sys/kernel/debug/clk/clk_sum
 
-uÅÌ¶Á/Ğ´ËÙÂÊµÄ²âÊÔÃüÁî·Ö±ğÈçÏÂ£º
-1¡¢²âÊÔĞ´ËÙÂÊ£º
+uç›˜è¯»/å†™é€Ÿç‡çš„æµ‹è¯•å‘½ä»¤åˆ†åˆ«å¦‚ä¸‹ï¼š
+1ã€æµ‹è¯•å†™é€Ÿç‡ï¼š
 time dd if=/dev/zero of=/mnt/usb/test.bin bs=500000 count=1000
-2¡¢²âÊÔ¶ÁËÙÂÊ£º
+2ã€æµ‹è¯•è¯»é€Ÿç‡ï¼š
 time dd if=/mnt/usb/test.bin bs=500000 count=1000 of=/dev/null
 
-ÉèÖÃcmaÄÚ´æ
+è®¾ç½®cmaå†…å­˜
 sunxi#env set cma 650M
 sunxi#env save
 Saving Environment to SUNXI...
@@ -49,18 +49,18 @@ saveenv storage_type = 2
 sunxi#env print cma
 cma=600M
 
-androidO ÏÔÊ¾Ö¡ÂÊ
- setprop debug.hwc  on.fps  ÏÔÊ¾Ö¡ÂÊ£»
-  setprop debug.hwc  on.show  Ã¿Ò»Ö¡µÄlayerĞÅÏ¢¶¼»á´òÓ¡³öÀ´
+androidO æ˜¾ç¤ºå¸§ç‡
+ setprop debug.hwc  on.fps  æ˜¾ç¤ºå¸§ç‡ï¼›
+  setprop debug.hwc  on.show  æ¯ä¸€å¸§çš„layerä¿¡æ¯éƒ½ä¼šæ‰“å°å‡ºæ¥
 
 
 adb logcat
-È¥³ıÄ³¸öÎÄ¼şÀïµÄ´òÓ¡ adb logcat IMGSRV:s  (IMGSRVÎÄ¼ş)
+å»é™¤æŸä¸ªæ–‡ä»¶é‡Œçš„æ‰“å° adb logcat IMGSRV:s  (IMGSRVæ–‡ä»¶)
 
 
-adb Æô¶¯apk
+adb å¯åŠ¨apk
 adb shell am start -n [package name]/[apkMainActivity]
-ÓÉAndroidManifest.xmlÖĞpackage="com.example.helloworld"µÃµ½package name
+ç”±AndroidManifest.xmlä¸­package="com.example.helloworld"å¾—åˆ°package name
 <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -70,23 +70,23 @@ adb shell am start -n [package name]/[apkMainActivity]
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		activityÊôĞÔµÃµ½MainActivity
-Èç£º am start -n com.example.helloworld/com.example.helloworld.MainActivity
+		activityå±æ€§å¾—åˆ°MainActivity
+å¦‚ï¼š am start -n com.example.helloworld/com.example.helloworld.MainActivity
 
-Æô¶¯tvdLauncher
+å¯åŠ¨tvdLauncher
 am start -n com.softwinner.launcher/com.softwinner.launcher.Launcher
 
-Æô¶¯»ªÎªÊÓÆµÍ¨»°°¡pk
+å¯åŠ¨åä¸ºè§†é¢‘é€šè¯å•Špk
 am start -n com.huawei.iptv.stb.videotalk.activity/.MainActivity
 
-H3Æô¶¯Í¼¿âapk
+H3å¯åŠ¨å›¾åº“apk
 am start -n com.android.gallery3d/com.android.gallery3d.app.GalleryActivity
 com.android.gallery3d.app.GalleryActivity
 
-Æô¶¯Ïà»ú
+å¯åŠ¨ç›¸æœº
 am start -n com.android.camera2/com.android.camera.CameraActivity
 
-Æô¶¯²¥·ÅÆ÷
+å¯åŠ¨æ’­æ”¾å™¨
 am start -n com.softwinner.TvdVideo/com.softwinner.TvdVideo.TvdVideoActivity -d https://fs-sq-1.kfs.io/201307/2d8qY-MrgmhzkHYXl7UFKIgDA33jUomeZ1o9vMsUN8I=?play_mode=openapi&__gda__=1468392340_1dde9aad4adf195519096edbbcc60bfc
 
 "http://pl.youku.com/playlist/m3u8?ts=1456996755&keyframe=1&vid=XMTQzMDE1NTMwOA==&type=hd2&ctype=20&sid=345699675553920d0a321&token=9056&ev=1&oip=1900834927&did=eabca10cf602692b8e64b59d908e6c0deabca10c&ep=9Jk5MdwNbw3S9D0W4mdWvPo8Nk2qa0cfqmdMtQyb%2FiRx94SJlur%2Ff0u15eVSknm%2B%0A"
@@ -95,125 +95,73 @@ http://60.19.28.11:18011/4k/8.mp4
 
 http://192.168.152.7:8080/h265.ts
 
-º£ĞÅapk
-am start -n com.hisense.mediacenter.mediaplayer/com.hisense.mediacenter.LaunchActivity
-
-ËÄ´¨ÔÆÓÎÏ·
-ÕËºÅ£º 112.4.29.129
 
 
-ÄÚÃÉIPTV
-ÇàÅ£Æ½Ì¨
-SN£º
-00000100000760600001AC4AFE2BAAA0 £¨¸ÃÕËºÅÒÑÉ¾³ı£©
-MAC£º
-AC4AFE2BAAA0 
-ÓÃ»§Ãû£º
-HSTEST00004@IPTV
-ÃÜÂë£º
-340998
-
-SN&MACÊÔÊÔ?
+SN&MACè¯•è¯•?
 00000100000760600001AC4AFE2BAAA6
 HS0471000098@IPTV
 030014
 
-º£ĞÅÄÚÃÉIPTV×ÔÑĞÖĞ¼ä¼ş
-ÉÕÂ¼ºÃÁËĞèÒª½øubootÅäÖÃ´®¿Ú£º°´s¼ü¿ª»ú£¬½øÈëubootºó£¬
-È»ºósetenv console ttyS0,115200£¬È»ºósaveenv£¬È»ºóresetÖØÆô
-Õı³£ÉÕºÃÊÇºÚÆÁ×´Ì¬£¬ĞèÒª°´Ò£¿ØµÄÉèÖÃ¼ü½øÈëÉèÖÃ£¬ÃÜÂë6321£¬
-È»ºó½ø¸ß¼¶ÉèÖÃÈ¥Ñ¡Ôñ»ªÎªÆ½Ì¨£¬ÉèÖÃÕËºÅhaixin4£¬ÃÜÂëhaixin4£¬µã±£´æ¡£
-×îºóÓ¦¸Ã»¹ÒªÈ¥ÍøÂçÉèÖÃÀïÑ¡Ôñ×Ô¶¯»ñÈ¡ip£¬È»ºóÖØÆô¾Í¿ÉÒÔ½øÈ¥ÁË
-²âÊÔÈÏÖ¤µØÖ·»» 
-http://60.31.30.231:33200/EPG/jsp/AuthenticationURL 
-http://60.31.30.231:33200/EPG/jsp/AuthenticationURL
 
-fastbootÏÂÖ´ĞĞÃüÁîÉÕĞ´MAC&&SN
+fastbootä¸‹æ‰§è¡Œå‘½ä»¤çƒ§å†™MAC&&SN
 pst erase 
 save_userdata mac  AC:4A:FE:2B:AA:A0 
 
 save_userdata specialstr 00000100000760600001AC4AFE2BAAA6 
 
-»ªÎªÆ½Ì¨£º
-haixin3
-haixin3
-
-ÁÉÄşµçĞÅ
-MAC£º48:55:5F:FF:B8:06
- ÕËºÅ£º980192278849
-  ÃÜÂë£º38384255
-
-4.10ºÅ¹Ì¼ş
-ĞèÒªÕËºÅÃÜÂë£º
-MAC: AC4AFE9FB159
-ÓÃ»§Ãû£ºhs0407test2
-ÃÜ  Âë£º123456
-
-
-
-hw/audio_policy.default.so
-(17:28) »Æ»İ±£: ÍÆ¿â¾ÍĞĞ
-(17:29) »Æ»İ±£: ÍÆÍêÒª busybox killall mediaserver
-
- ²é¿´VEÆµÂÊ
+æŸ¥çœ‹VEé¢‘ç‡
 root@rabbit-p1:/sys/class/sunxi_dump # echo 0x01c20018 > dump                  
 root@rabbit-p1:/sys/class/sunxi_dump # cat dump    
 0x91000e00
-24*N/M£¬ÆäÖĞN a=(14:8 bit), b=(3:0 bit), N=a+1, M=b+1; Èç 0x91000e00£¬ ÔòÎª 360M
+24*N/Mï¼Œå…¶ä¸­N a=(14:8 bit), b=(3:0 bit), N=a+1, M=b+1; å¦‚ 0x91000e00ï¼Œ åˆ™ä¸º 360M
 
 
-
-
-
-´®¿Ú²¨ÌØÂÊ
+ä¸²å£æ³¢ç‰¹ç‡
 115200
 
-android7.0 drmÊÓÆµ²âÊÔ
-ÕËºÅ liling19930619@gmail.com
-ÃÜÂë ling1993
+android7.0 drmè§†é¢‘æµ‹è¯•
+è´¦å· liling19930619@gmail.com
+å¯†ç  ling1993
 
 leegreatworld
 egreatworld
 
 
-hls¶¯Ì¬ÂëÂÊÆ¬Ô´
+hlsåŠ¨æ€ç ç‡ç‰‡æº
 http://www.youtube.com/api/manifest/hls_variant/id/0168724d02bd9945/itag/5/source/youtube/playlist_type/DVR/ip/0.0.0.0/ipbits/0/expire/19000000000/sparams/ip,ipbits,expire,id,itag,source,playlist_type/signature/773AB8ACC68A96E5AA481996AD6A1BBCB70DCB87.95733B544ACC5F01A1223A837D2CF04DF85A3360/key/ik0/file/m3u8
 
-¹Ø±Õselinux
-
-
+å…³é—­selinux
 
 
 echo 4 > /sys/kernel/autohotplug/lock
 echo 0-3 > /dev/cpuset/foreground/cpus
 
-ËøºË£º  /sys/kernel/autohotplug/enable   // 1 Ä¬ÈÏ´ò¿ª
-        ¡¡echo 4 > /sys/kernel/autohotplug/lock  //Ëø4ºË
+é”æ ¸ï¼š  /sys/kernel/autohotplug/enable   // 1 é»˜è®¤æ‰“å¼€
+        ã€€echo 4 > /sys/kernel/autohotplug/lock  //é”4æ ¸
 
-¶¨Æµ£º  echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-        ¡¡echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq   //4¸öºËÅÜÔÚ1.2G 
+å®šé¢‘ï¼š  echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+        ã€€echo 1200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq   //4ä¸ªæ ¸è·‘åœ¨1.2G 
 
-¡¡¡¡¡¡cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq  //²é¿´0ºÅcpuµ±Ç°ÆµÂÊ
+ã€€ã€€ã€€cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq  //æŸ¥çœ‹0å·cpuå½“å‰é¢‘ç‡
 
 
-ÄÚ´æµ÷ÊÔ
+å†…å­˜è°ƒè¯•
 lsof | grep dmabuf|grep mem
 
-cts ²âÊÔµ¥Ïî²âÊÔ·½·¨
+cts æµ‹è¯•å•é¡¹æµ‹è¯•æ–¹æ³•
 
-ÓĞactivity 
-Ö±½Óam am start -n °üÃû/activity Â·¾¶ÃûÀàÃû
+æœ‰activity 
+ç›´æ¥am am start -n åŒ…å/activity è·¯å¾„åç±»å
 
-Ã»ÓĞactivity
+æ²¡æœ‰activity
 
 am instrument -r -e class android.media.cts.AdaptivePlaybackTest#testHEVC_adaptiveDrc -w android.media.cts/android.support.test.runner.AndroidJUnitRunner
 
-²ÎÊıËµÃ÷
-android.media.cts.AdaptivePlaybackTest#testHEVC_adaptiveDrcs ÊÇ°üÃûÀàÃû¼Ó·½·¨Ãû¡£
-android.media.cts  °üÃû
-android.support.test.runner.AndroidJUnitRunner AndroidManifest ÀïÃæ instrument Õâ¸öÑ¡Ïî
+å‚æ•°è¯´æ˜
+android.media.cts.AdaptivePlaybackTest#testHEVC_adaptiveDrcs æ˜¯åŒ…åç±»ååŠ æ–¹æ³•åã€‚
+android.media.cts  åŒ…å
+android.support.test.runner.AndroidJUnitRunner AndroidManifest é‡Œé¢ instrument è¿™ä¸ªé€‰é¡¹
 
 
-
-²Î¿¼
+å‚è€ƒ
 http://www.bkjia.com/Androidjc/1009016.html
